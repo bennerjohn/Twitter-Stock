@@ -18,6 +18,6 @@ download.file(url="http://curl.haxx.se/ca/cacert.pem", destfile="cacert.pem")
 credential$handshake(cainfo="cacert.pem")
 
 filterStream( file.name="File-Name.json",
-             track="apple,iphone,mac,facebook,face book,Microsoft,windows,xbox ", tweets=2000, oauth=credential, timeout=600, lang='en' )
+             track="apple,iphone,mac,facebook,Microsoft,windows,xbox ", tweets=2000, oauth=credential, timeout=600, lang='en' )
 
 #This came from http://stats.seandolinar.com/collecting-twitter-data-getting-started/ and was edited for my needs
