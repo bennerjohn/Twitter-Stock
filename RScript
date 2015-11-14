@@ -1,0 +1,23 @@
+#install.packages("streamR")
+#install.packages("ROAuth") These are here if they need to be installed
+library(ROAuth)
+library(streamR)
+
+
+
+#create your OAuth credential
+credential <- OAuthFactory$new(consumerKey='PbOGRIvlCT870LJ1aU8QQOv4B',
+                         consumerSecret='Sxh02Lr9RqjhPVcgMiUBaslvk51HWhyXNqB5f9CoGb30RtZKvE',
+                         requestURL='https://api.twitter.com/oauth/request_token',
+                         accessURL='https://api.twitter.com/oauth/access_token',
+                         authURL='https://api.twitter.com/oauth/authorize')
+ 
+#authentication process
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+download.file(url="http://curl.haxx.se/ca/cacert.pem", destfile="cacert.pem")
+credential$handshake(cainfo="cacert.pem")
+
+filterStream( file.name="File-Name.json",
+             track="apple,iphone,mac,facebook,face book,Microsoft,windows,xbox ", tweets=2000, oauth=credential, timeout=600, lang='en' )
+
+#This came from http://stats.seandolinar.com/collecting-twitter-data-getting-started/ and was edited for my needs
